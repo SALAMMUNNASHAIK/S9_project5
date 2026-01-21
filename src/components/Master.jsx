@@ -1,10 +1,13 @@
 import { Link, useLocation } from "react-router-dom"
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import "../components/styles.css"
 
 function Master() {
-     const location = useLocation();
-     const [message, setMessage] = useState("");
+    const location = useLocation();
+    const [message, setMessage] = useState("");
+    useEffect(() => {
+        alert(localStorage.getItem("msg"));
+      }, []);
 
     return (
         <>
@@ -16,16 +19,21 @@ function Master() {
                 <br></br>
                 <h1>This is the main page u know!!!!</h1>
             </div>
-            
-<input
+
+            <input
                 type="text"
                 placeholder="Enter Message"
-                style={{width:400,height:100,padding:10,color:"blue",backgroundColor:"yellow",fontSize:20}}
+                style={{ width: 400, height: 100, padding: 10, color: "blue", backgroundColor: "yellow", fontSize: 20 }}
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={(e) => {
+                    setMessage(e.target.value);
+                    localStorage.setItem("msg", e.target.value);
+                    localStorage.setItem("msg1", e.target.value);
+                }}
             />
 
-             <p>I'm belongs to ---{location.state?.course}</p>
+            <p>I'm belongs to ---{location.state?.course}</p>
+            
         </>
     )
 }

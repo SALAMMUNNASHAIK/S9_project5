@@ -1,12 +1,15 @@
 import { Link , useLocation } from "react-router-dom"
 import "../components/styles.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
 function About() {
     const location = useLocation();
     
      const [message, setMessage] = useState("");
+     useEffect(() => {
+         alert(localStorage.getItem("msg"));
+       }, []);
     return (
         <>
             <div className="head">
